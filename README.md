@@ -12,8 +12,8 @@ To integrate FeedbackBird with a WordPress website, you can use the following ex
 
 ```php
 add_action('admin_enqueue_scripts', function () {
-    wp_enqueue_script('feedback-bird-script', 'https://cdn.jsdelivr.net/gh/feedbackbird/assets@master/wp/app.js?uid=01GZGD4WXGCBF9H9TKJHMCZKTM');
-    wp_add_inline_script('feedback-bird-script', sprintf('var feedbackBirdObject = %s;', json_encode([
+    wp_enqueue_script('feedbackbird-app-script', 'https://cdn.jsdelivr.net/gh/feedbackbird/assets@master/wp/app.js?uid=YOUR_UID');
+    wp_add_inline_script('feedbackbird-app-script', sprintf('var feedbackBirdObject = %s;', json_encode([
         'userid' => get_current_user(),
         'meta' => [
             'php_version' => PHP_VERSION,
@@ -26,6 +26,13 @@ add_action('admin_enqueue_scripts', function () {
             }, get_plugins(), array_keys(get_plugins())),
         ]
     ])));
+
+    add_filter('script_loader_tag', function ($tag, $handle, $src) {
+        if ('feedbackbird-app-script' === $handle) {
+            return preg_replace('/^<script /i', '<script type="module" id="feedbackbird-app-script" crossorigin="crossorigin"', $tag);
+        }
+        return $tag;
+    }, 10, 3);
 });
 ```
 
