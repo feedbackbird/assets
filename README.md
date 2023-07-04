@@ -4,6 +4,8 @@ This repository contains the assets used by FeedbackBird, a SaaS platform for co
 
 ## jsDelivr
 
+[![](https://data.jsdelivr.com/v1/package/gh/feedbackbird/assets/badge)](https://www.jsdelivr.com/package/gh/feedbackbird/assets)
+
 jsDelivr is a global content delivery network (CDN) that hosts popular JavaScript libraries and assets. It provides a reliable and efficient way to deliver files to users by distributing the files across multiple servers located around the world. This improves the performance and availability of the assets, ensuring that users can access them quickly and reliably.
 
 ## WordPress Integration
